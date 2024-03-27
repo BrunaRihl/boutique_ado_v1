@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'home',
     'products',
+    'bag',
 
 ]
 
@@ -73,6 +74,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',#required by allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'bag.contexts.bag_contents',
+
             ],
         },
     },
@@ -164,3 +167,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+FREE_DELIVERY_THRESHOLD = 50
+STANDARD_DELIVERY_PERCENTAGE = 10
