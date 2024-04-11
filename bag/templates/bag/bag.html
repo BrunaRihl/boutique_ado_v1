@@ -135,22 +135,28 @@
         form.submit();
     })
 
-    $('.decrement-qty').click(function(e) {
-        var itemId = $(this).data('item_id');
-        var inputElement = $('.id_qty_' + itemId);
-        var currentValue = parseInt(inputElement.val());
-        if (currentValue > 1) {
-            inputElement.val(currentValue - 1);
+    $('.update-form .decrement-qty').click(function(e) {
+        e.preventDefault();
+        var form = $(this).closest('.update-form');
+        var itemId = form.find('.qty_input').data('item_id');
+        var quantityInput = form.find('.qty_input');
+        var newQuantity = parseInt(quantityInput.val()) - 1;
+        if (newQuantity >= 1) {
+            quantityInput.val(newQuantity);
+            form.submit();
         }
     });
-
-    $('.increment-qty').click(function(e) {
-        var itemId = $(this).data('item_id');
-        var inputElement = $('.id_qty_' + itemId);
-        var currentValue = parseInt(inputElement.val());
-        inputElement.val(currentValue + 1);
+    
+    $('.update-form .increment-qty').click(function(e) {
+        e.preventDefault();
+        var form = $(this).closest('.update-form');
+        var itemId = form.find('.qty_input').data('item_id');
+        var quantityInput = form.find('.qty_input');
+        var newQuantity = parseInt(quantityInput.val()) + 1;
+        quantityInput.val(newQuantity);
+        form.submit();
     });
-
+    
     // Remove item and reload on click
     $('.remove-item').click(function(e) {
         var csrfToken = "{{ csrf_token }}";
