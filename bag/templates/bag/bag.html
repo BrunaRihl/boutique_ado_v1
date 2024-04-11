@@ -127,11 +127,29 @@
 {% include 'products/includes/quantity_input_script.html' %}
 
 <script type="text/javascript">
+
+    
     // Update quantity on click
     $('.update-link').click(function(e) {
         var form = $(this).prev('.update-form');
         form.submit();
     })
+
+    $('.decrement-qty').click(function(e) {
+        var itemId = $(this).data('item_id');
+        var inputElement = $('.id_qty_' + itemId);
+        var currentValue = parseInt(inputElement.val());
+        if (currentValue > 1) {
+            inputElement.val(currentValue - 1);
+        }
+    });
+
+    $('.increment-qty').click(function(e) {
+        var itemId = $(this).data('item_id');
+        var inputElement = $('.id_qty_' + itemId);
+        var currentValue = parseInt(inputElement.val());
+        inputElement.val(currentValue + 1);
+    });
 
     // Remove item and reload on click
     $('.remove-item').click(function(e) {
