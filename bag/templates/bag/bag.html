@@ -127,36 +127,12 @@
 {% include 'products/includes/quantity_input_script.html' %}
 
 <script type="text/javascript">
-
-    
     // Update quantity on click
     $('.update-link').click(function(e) {
         var form = $(this).prev('.update-form');
         form.submit();
     })
 
-    $('.update-form .decrement-qty').click(function(e) {
-        e.preventDefault();
-        var form = $(this).closest('.update-form');
-        var itemId = form.find('.qty_input').data('item_id');
-        var quantityInput = form.find('.qty_input');
-        var newQuantity = parseInt(quantityInput.val()) - 1;
-        if (newQuantity >= 1) {
-            quantityInput.val(newQuantity);
-            form.submit();
-        }
-    });
-    
-    $('.update-form .increment-qty').click(function(e) {
-        e.preventDefault();
-        var form = $(this).closest('.update-form');
-        var itemId = form.find('.qty_input').data('item_id');
-        var quantityInput = form.find('.qty_input');
-        var newQuantity = parseInt(quantityInput.val()) + 1;
-        quantityInput.val(newQuantity);
-        form.submit();
-    });
-    
     // Remove item and reload on click
     $('.remove-item').click(function(e) {
         var csrfToken = "{{ csrf_token }}";
